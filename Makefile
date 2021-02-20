@@ -21,4 +21,4 @@ clean:
 publish: dist
 	yarn publish --new-version $(final_version)
 
-.PHONY: clean publish
+.PHONY: clean publish dist
