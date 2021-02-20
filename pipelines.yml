@@ -33,7 +33,4 @@ pipelines:
         execution:
           onExecute:
             - cd ${res_gitPipelinesExampleNpmEnv_resourcePath}
-            - yarn
-            - yarn build
-            # make a unique version number as we cant republish
-            - yarn publish --new-version "0.0.0-${run_number}"
+            - make publish
