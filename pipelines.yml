@@ -35,6 +35,5 @@ pipelines:
             - cd ${res_gitPipelinesExampleNpmEnv_resourcePath}
             - yarn
             - yarn build
-
-            # since this is a dummy package, force republishing the version
-            - yarn publish --force
+            # make a unique version number as we cant republish
+            - yarn publish --new-version "0.0.0-${run_number}"
