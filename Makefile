@@ -18,7 +18,7 @@ clean:
 	rm -rf dist
 	rm -f yarn.lock
 
-publish: build
+publish: dist
 	yarn publish --new-version $(final_version)
 
 .PHONY: clean publish
