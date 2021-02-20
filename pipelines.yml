@@ -11,7 +11,7 @@ resources:
       gitProvider: githubAccountGeoffwilliams
       path: declarativesystems/pipelines_example_npmenv
 pipelines:
-  - name: piplinesExampleNpmEnv
+  - name: pipelinesExampleNpmEnv
     configuration:
       runtime:
         type: image
