@@ -35,4 +35,6 @@ pipelines:
             - cd ${res_gitPipelinesExampleNpmEnv_resourcePath}
             - yarn
             - yarn build
-            - yarn publish
+
+            # since this is a dummy package, force republishing the version
+            - yarn publish --force
