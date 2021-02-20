@@ -29,7 +29,9 @@ pipelines:
             - name: artifactory
           inputResources:
             - name: npmEnvExample
+            - name: gitPipelinesExampleNpmEnv
         execution:
           onExecute:
+            - cd ${res_gitPipelinesExampleNpmEnv_resourcePath}
             - yarn build
             - yarn publish
