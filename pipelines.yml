@@ -33,5 +33,6 @@ pipelines:
         execution:
           onExecute:
             - cd ${res_gitPipelinesExampleNpmEnv_resourcePath}
+            - yarn
             - yarn build
             - yarn publish
