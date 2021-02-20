@@ -1,0 +1,35 @@
+apiVersion: v1.1
+resources:
+  - name: npmEnvExample
+    type: declarativesystems/NpmEnv
+    configuration:
+      sourceArtifactory: artifactory # for resolving and publishing packages
+      repositoryName: npm
+  - name: gitPipelinesExampleNpmEnv
+    type: GitRepo
+    configuration:
+      gitProvider: githubAccountGeoffwilliams
+      path: declarativesystems/pipelines_example_npmenv
+pipelines:
+  - name: piplinesExampleNpmEnv
+    configuration:
+      runtime:
+        type: image
+        image:
+          custom:
+            name: declarativesystems.jfrog.io/docker-local/pipelines
+            tag: 0.7.0-27
+            registry: artifactory
+            sourceRepository: docker-local
+    steps:
+      - name: yarnBuildAndPush
+        type: Bash
+        configuration:
+          integrations:
+            - name: artifactory
+          inputResources:
+            - name: npmEnvExample
+        execution:
+          onExecute:
+            - yarn build
+            - yarn publish
