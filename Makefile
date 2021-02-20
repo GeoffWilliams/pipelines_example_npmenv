@@ -1,6 +1,6 @@
-base_version := $(jq -r .version < package.json)
+base_version := $(shell jq -r .version < package.json)
 ifeq ($(run_number),)
-	final_version = $ $(base_version)-$(git_rev)
+	final_version = $ $(base_version)
 else
 	# make a unique version number as we cant republish
 	final_version = $(base_version)-$(run_number)
@@ -20,5 +20,8 @@ clean:
 
 publish: dist
 	yarn publish --new-version $(final_version)
+
+print_version:
+	@echo $(final_version)
 
 .PHONY: clean publish dist
