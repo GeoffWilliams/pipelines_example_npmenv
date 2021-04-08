@@ -10,15 +10,24 @@ resources:
     configuration:
       gitProvider: githubAccountGeoffwilliams
       path: declarativesystems/pipelines_example_npmenv
+      branches:
+        include: ^{{gitBranch}}$
+      cancelPendingRunsOn:
+        pullRequestUpdate: true
+        newCommit: true
+
 pipelines:
   - name: pipelinesExampleNpmEnv
     configuration:
+      retentionPolicy:
+        maxAgeDays: 90
+        minRuns: 10
       runtime:
         type: image
         image:
           custom:
             name: declarativesystems.jfrog.io/docker-local/pipelines
-            tag: 0.7.0-27
+            tag: 0.9.0
             registry: artifactory
             sourceRepository: docker-local
     steps:
